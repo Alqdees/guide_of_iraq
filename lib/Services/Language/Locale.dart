@@ -5,7 +5,11 @@ class Languages implements Translations {
 
   @override
   Map<String, Map<String, String>> get keys => {
-        "ar": {},
-        "en": {},
+        "ar": {
+          "Search" :"بحث",
+        },
+        "en": {
+          "Search" :"Search",
+        },
       };
 }

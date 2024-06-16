@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:guide_of_iraq/Control/ShowDataController.dart';
 import 'package:guide_of_iraq/View/Colors/ColorApp.dart';
 
+import 'CardHomePage.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     const SizedBox(
-                      width: 8.0,
+                      width: 18.0,
                     ),
                     Container(
                       // color: ColorApp.graylight,
@@ -85,16 +87,16 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 8.0,
-              ),
+              // const SizedBox(
+              //   height: 4.0,
+              // ),
               Expanded(
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const SizedBox(
-                      height: 4.0,
+                      width: 1.0,
                     ),
                     DropdownExample(
                       name: "Doctor",
@@ -104,20 +106,30 @@ class HomePage extends StatelessWidget {
                         'Pharmacal',
                       ],
                     ),
+                    // const SizedBox(
+                    //   width: 4.0,
+                    // ),
                     DropdownExample(
-                      name: "Eye surgery",
+                      name: "Eye surgery 1",
                       dropdownItems: const [
-                        "Eye surgery",
+                        "Eye surgery 1",
+                        "Eye surgery 2",
+                        "Eye surgery 3",
                       ],
                     ),
+                    // const SizedBox(
+                    //   width: 4.0,
+                    // ),
                     DropdownExample(
                       name: "Baghdad",
                       dropdownItems: const [
                         'Baghdad',
+                        'Basra',
+                        'Najaf',
                       ],
                     ),
                     const SizedBox(
-                      height: 4.0,
+                      width: 1.0,
                     ),
                   ],
                 ),
@@ -125,18 +137,9 @@ class HomePage extends StatelessWidget {
               Expanded(
                 flex: 8,
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 15,
                   itemBuilder: (context, i) {
-                    return const ListTile(
-                      leading: Text(
-                        'Ali',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      title: Icon(Icons.safety_check),
-                    );
+                    return CardHomePage();
                   },
                 ),
               )
@@ -149,9 +152,15 @@ class HomePage extends StatelessWidget {
 }
 
 class DropdownExample extends StatefulWidget {
-  DropdownExample({required this.name, required this.dropdownItems, super.key});
+  DropdownExample({
+    required this.name,
+    required this.dropdownItems,
+    this.flex,
+    super.key,
+  });
   String? name;
   List<String>? dropdownItems;
+  int? flex;
   @override
   _DropdownExampleState createState() => _DropdownExampleState();
 }
@@ -171,11 +180,14 @@ class _DropdownExampleState extends State<DropdownExample> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 6.0),
       decoration: BoxDecoration(
         color: ColorApp.graylight, // Background color
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: Colors.black, width: 2),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: Colors.black,
+          width: 0.8,
+        ),
       ),
       child: DropdownButton<String>(
         dropdownColor: ColorApp.graylight,
