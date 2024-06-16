@@ -17,6 +17,24 @@ class HomePage extends StatelessWidget {
       init: ShowDataController(),
       builder: (c) {
         return Scaffold(
+          backgroundColor: ColorApp.grayvertlight,
+          bottomSheet: SizedBox(
+            height: 50.0,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Icon(Icons.add),
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
+          ),
           body: SafeArea(
               child: Column(
             children: [
@@ -31,17 +49,19 @@ class HomePage extends StatelessWidget {
                     ),
                     Container(
                       // color: ColorApp.graylight,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4.0, horizontal: 2.0),
                       decoration: BoxDecoration(
                         color: ColorApp.graylight, // Background color
-                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: Colors.black, // Border color
-                          width: 1.0, // Border width
+                          color: ColorApp.graylight,
+                          width: 0.8,
                         ),
                       ),
                       child: IconButton(
                         onPressed: () {},
-                        iconSize: 35.0,
+                        iconSize: 34.0,
                         icon: const Icon(
                           Icons.notification_add,
                         ),
@@ -155,12 +175,11 @@ class DropdownExample extends StatefulWidget {
   DropdownExample({
     required this.name,
     required this.dropdownItems,
-    this.flex,
     super.key,
   });
   String? name;
   List<String>? dropdownItems;
-  int? flex;
+
   @override
   _DropdownExampleState createState() => _DropdownExampleState();
 }
@@ -173,7 +192,6 @@ class _DropdownExampleState extends State<DropdownExample> {
   void initState() {
     super.initState();
     _selectedValue = widget.name;
-    // Initialize state with the constructor parameter
     _dropdownItems = widget.dropdownItems;
   }
 
