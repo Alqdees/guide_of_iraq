@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:guide_of_iraq/Control/ShowDataController.dart';
+import 'package:guide_of_iraq/View/AddEntries/AddEntries.dart';
 import 'package:guide_of_iraq/View/Colors/ColorApp.dart';
 
 import 'CardHomePage.dart';
@@ -23,35 +24,56 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.home,
-                    color: Colors.black,
-                    size: 38.0,
+                    onPressed: () {},
+                    icon: const Column(
+                      children: [
+                        Icon(
+                          Icons.home,
+                          color: Colors.black,
+                          size: 34.0,
+                        ),
+                        Text('Home')
+                      ],
+                    )),
+                IconButton(
+                  onPressed: () {
+                    Get.offNamed(const AddEntries().toString());
+                  },
+                  icon: const Column(
+                    children: [
+                      Icon(
+                        Icons.save,
+                        color: Colors.black,
+                        size: 32.0,
+                      ),
+                      Text("Saving"),
+                    ],
                   ),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.save,
-                    color: Colors.black,
-                    size: 38.0,
+                  icon: const Column(
+                    children: [
+                      Icon(
+                        Icons.settings,
+                        color: Colors.black,
+                        size: 32.0,
+                      ),
+                      Text('settings'),
+                    ],
                   ),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.settings,
-                    color: Colors.black,
-                    size: 38.0,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.branding_watermark,
-                    color: Colors.black,
-                    size: 38.0,
+                  icon: const Column(
+                    children: [
+                      Icon(
+                        Icons.branding_watermark,
+                        color: Colors.black,
+                        size: 32.0,
+                      ),
+                      Text('sections'),
+                    ],
                   ),
                 ),
               ],
@@ -178,13 +200,8 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                 flex: 8,
-                child: ListView.builder(
-                  itemCount: 15,
-                  itemBuilder: (context, i) {
-                    return CardHomePage();
-                  },
-                ),
-              )
+                child: CardHomePage(),
+              ),
             ],
           )),
         );

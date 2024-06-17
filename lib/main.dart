@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:guide_of_iraq/Services/Language/LanguagesController.dart';
 import 'package:guide_of_iraq/Services/Language/Locale.dart';
+import 'package:guide_of_iraq/View/AddEntries/AddEntries.dart';
 import 'package:guide_of_iraq/View/HomePage/HomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       translations: Languages(),
+
       // theme: ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
