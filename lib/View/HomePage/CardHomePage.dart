@@ -14,7 +14,7 @@ class CardHomePage extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Container(
         height: height! / 7,
-        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+        padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
         decoration: BoxDecoration(
           color: Colors.white, // Background color
           borderRadius: BorderRadius.circular(10),
@@ -27,64 +27,77 @@ class CardHomePage extends StatelessWidget {
           children: [
             const Expanded(
               flex: 3,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // textDirection: TextDirection.rtl,
-                children: [
-                  Text(
-                    'د. احمد فهدي ',
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'دكتوراه طب وجراحة عيون ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      // fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    textDirection: TextDirection.rtl,
-                    children: [
-                      Icon(
-                        Icons.calendar_month,
-                        textDirection: TextDirection.rtl,
-                      ),
-                      Text(
-                        'دكتوراه طب وجراحة عيون ',
-                        // textDirection: preferences!.getString("lang") == 'ar'
-                        //     ? TextDirection.ltr
-                        //     : TextDirection.rtl,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: ColorApp.bluelight,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // textDirection: TextDirection.rtl,
+                  children: [
+                    Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Text(
+                          'د. احمد فهدي ',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    textDirection: TextDirection.rtl,
-                    children: [
-                      Icon(Icons.location_pin),
-                      Text(
-                        'بغداد - مدينة الصدر',
-                        textAlign: TextAlign.start,
-                        // textDirection: preferences!.getString("lang") == 'ar'
-                        //     ? TextDirection.ltr
-                        //     : TextDirection.rtl,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: ColorApp.bluelight,
+                      ],
+                    ),
+                    Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Text(
+                          'دكتوراه طب وجراحة عيون ',
+                          style: TextStyle(
+                            fontSize: 20,
+                            // fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                    Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Icon(
+                          Icons.calendar_month,
+                          textDirection: TextDirection.rtl,
+                        ),
+                        Text(
+                          '9:00 am - 4:00 pm ',
+                          // textDirection: preferences!.getString("lang") == 'ar'
+                          //     ? TextDirection.ltr
+                          //     : TextDirection.rtl,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: ColorApp.bluelight,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      textDirection: TextDirection.rtl,
+                      children: [
+                        Icon(Icons.location_pin),
+                        Text(
+                          'بغداد - مدينة الصدر',
+                          textAlign: TextAlign.start,
+                          // textDirection: preferences!.getString("lang") == 'ar'
+                          //     ? TextDirection.ltr
+                          //     : TextDirection.rtl,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: ColorApp.bluelight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(

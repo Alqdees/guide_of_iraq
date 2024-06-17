@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:guide_of_iraq/Control/ShowDataController.dart';
 import 'package:guide_of_iraq/View/Colors/ColorApp.dart';
@@ -18,19 +15,44 @@ class HomePage extends StatelessWidget {
       builder: (c) {
         return Scaffold(
           backgroundColor: ColorApp.grayvertlight,
-          bottomSheet: SizedBox(
-            height: 50.0,
+          bottomSheet: Container(
+            color: ColorApp.grayvertlight,
+            height: 70.0,
             width: double.infinity,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                OutlinedButton(
+                IconButton(
                   onPressed: () {},
-                  child: const Icon(Icons.add),
+                  icon: const Icon(
+                    Icons.home,
+                    color: Colors.black,
+                    size: 38.0,
+                  ),
                 ),
-                OutlinedButton(
+                IconButton(
                   onPressed: () {},
-                  child: const Icon(Icons.add),
+                  icon: const Icon(
+                    Icons.save,
+                    color: Colors.black,
+                    size: 38.0,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.black,
+                    size: 38.0,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.branding_watermark,
+                    color: Colors.black,
+                    size: 38.0,
+                  ),
                 ),
               ],
             ),
