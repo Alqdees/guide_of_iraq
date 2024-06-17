@@ -37,7 +37,10 @@ class HomePage extends StatelessWidget {
                     )),
                 IconButton(
                   onPressed: () {
-                    Get.offNamed(const AddEntries().toString());
+                    // Get.offNamed(const AddEntries().toString());
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return const AddEntries();
+                    }));
                   },
                   icon: const Column(
                     children: [
