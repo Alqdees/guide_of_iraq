@@ -137,20 +137,25 @@ class AddEntries extends StatelessWidget {
           const SizedBox(
             height: 12.0,
           ),
-          SingleChildScrollView(
-              physics: const ScrollPhysics().parent,
-              child: TextFieldCustomCV(lable: 'CV', icon: Icons.info)),
+          Expanded(child: TextFieldCustomCV(lable: 'CV', icon: Icons.info)),
           const SizedBox(
             height: 32.0,
           ),
-          OutlinedButton(
-              onPressed: () {},
-              child: const Column(
-                children: [
-                  Icon(Icons.save),
-                  Text('Save'),
-                ],
-              ))
+          Expanded(
+            child: Container(
+              color: ColorApp.graylight,
+              
+              child: IconButton(
+                onPressed: () {},
+                icon: const Column(
+                  children: [
+                    Icon(Icons.save),
+                    Text('Save'),
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       )),
     );

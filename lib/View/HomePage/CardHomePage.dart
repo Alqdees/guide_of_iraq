@@ -17,12 +17,11 @@ class CardHomePage extends StatelessWidget {
 
     return Obx(
       () {
-        log('message postData.isLoading.value ${postData.isLoading.value}');
         if (postData.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return ListView.builder(
-            itemCount: postData.posts.isEmpty ? 10 : postData.posts.length,
+            itemCount: postData.posts.length,
             itemBuilder: (context, i) {
               return Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -40,10 +39,10 @@ class CardHomePage extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         flex: 3,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             // textDirection: TextDirection.rtl,
@@ -52,16 +51,17 @@ class CardHomePage extends StatelessWidget {
                                 textDirection: TextDirection.rtl,
                                 children: [
                                   Text(
-                                    'د. احمد فهدي ',
+                                    maxLines: 2,
+                                    postData.posts[i].specialization.toString(),
                                     textDirection: TextDirection.rtl,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],
                               ),
-                              Row(
+                              const Row(
                                 textDirection: TextDirection.rtl,
                                 children: [
                                   Text(
@@ -73,7 +73,7 @@ class CardHomePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Row(
+                              const Row(
                                 textDirection: TextDirection.rtl,
                                 children: [
                                   Icon(
@@ -93,7 +93,7 @@ class CardHomePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Row(
+                              const Row(
                                 textDirection: TextDirection.rtl,
                                 children: [
                                   Icon(Icons.location_pin),
