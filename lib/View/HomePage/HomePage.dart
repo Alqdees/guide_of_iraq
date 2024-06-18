@@ -7,8 +7,9 @@ import 'package:guide_of_iraq/View/Colors/ColorApp.dart';
 import 'CardHomePage.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  ShowDataController postData = Get.put(ShowDataController());
+  List<String> p = ['a', 'b', 'c', 'd', 'e', 'f'];
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ShowDataController>(
@@ -203,7 +204,23 @@ class HomePage extends StatelessWidget {
               ),
               Expanded(
                 flex: 8,
-                child: CardHomePage(),
+                child: Obx(() {
+                  if (postData.isLoading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return ListView.builder(
+                      itemCount: postData.posts.length,
+                      itemBuilder: (context, i) {
+                
+                        return CardHomePage(
+                          name: postData.posts[i].governorate,
+                          time: postData.posts[i].updatedAt,
+                          type: postData.posts[i].specialization,
+                        );
+                      },
+                    );
+                  }
+                }),
               ),
             ],
           )),

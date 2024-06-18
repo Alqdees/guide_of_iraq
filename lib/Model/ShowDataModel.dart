@@ -64,6 +64,8 @@ class Data {
     required this.createdAt,
     required this.updatedAt,
   });
+  // Data(this.json);
+  late final Map<String, dynamic> json;
   late final int id;
   late final int userId;
   late final String phone;

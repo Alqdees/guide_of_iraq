@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 class ShowDataController extends GetxController {
   var posts = <Data>[].obs;
+  // List<Data> posts = [];
   var isLoading = true.obs;
 
   @override
@@ -24,50 +25,34 @@ class ShowDataController extends GetxController {
       // var headers = {"content-type": "application/json"};
 
       final response = await http.post(uri, body: body);
-
+      log('Response: ${response.body}');
       isLoading(true);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = json.decode(response.body);
+
         posts.value = jsonResponse.entries.map((data) {
-          return Data.fromJson(jsonResponse);
+          return Data(
+            id: data.value,
+            userId: data.value,
+            phone: data.value,
+            location: data.value,
+            section: data.value,
+            specialization: data.value,
+            specializationType: data.value,
+            governorate: data.value,
+            info: data.value,
+            createdAt: data.value,
+            updatedAt: data.value,
+          );
         }).toList();
-        // posts.value = jsonResponse.entries.map((data) {
-        //   return (
-        //     id: int.parse(data.key),
-        //     userId: int.parse(data.key),
-        //     phone: data.key,
-        //     location: data.key,
-        //     section: data.key,
-        //     specialization: data.key,
-        //     specializationType: data.key,
-        //     governorate: data.key,
-        //     info: data.key,
-        //     createdAt: data.key,
-        //     updatedAt: data.key,
-        //   );
-        // }).toList();
-        print(posts.length);
-        // log('message: ${posts.value} :');
-
-        // jsonResponse.forEach(
-        //   (key, value) {
-
-        //     // posts.value[key] = value;
-        //   },
-        // );
-
-        // posts.value = jsonResponse
-        //     .map(
-        //       (post) => ShowDataModel.fromJson(post),
-        //     )
-        //     .toList();
       } else {
         print('Error ${response.statusCode}: ${response.reasonPhrase}');
         Get.snackbar('Error', 'Failed to load posts');
       }
     } catch (e) {
-      print('Exception: $e');
+      e.printError();
+      // print('Exception: $');
       Get.snackbar('Error', 'Failed to load posts: $e');
     } finally {
       isLoading(false);
