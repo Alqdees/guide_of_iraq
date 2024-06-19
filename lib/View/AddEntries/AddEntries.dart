@@ -1,10 +1,7 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
+import 'package:guide_of_iraq/Model/AddEntriesModel/AddEntriesModel.dart';
 import '../Colors/ColorApp.dart';
 import '../HomePage/HomePage.dart';
 
@@ -137,22 +134,40 @@ class AddEntries extends StatelessWidget {
           const SizedBox(
             height: 12.0,
           ),
-          Expanded(child: TextFieldCustomCV(lable: 'CV', icon: Icons.info)),
+          TextFieldCustomCV(lable: 'CV', icon: Icons.info),
           const SizedBox(
-            height: 32.0,
+            height: 10.0,
           ),
-          Expanded(
-            child: Container(
-              color: ColorApp.graylight,
-              
-              child: IconButton(
-                onPressed: () {},
-                icon: const Column(
-                  children: [
-                    Icon(Icons.save),
-                    Text('Save'),
-                  ],
-                ),
+          Container(
+            height: 70.0,
+            width: 100.0,
+            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
+            decoration: BoxDecoration(
+              color: ColorApp.graylight, // Background color
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: ColorApp.graylight,
+                width: 0.8,
+              ),
+            ),
+            // color: ColorApp.graylight,
+            child: IconButton(
+              onPressed: () {
+                AddEntriesModel.addEntries({
+                  "phone": "1267890",
+                  "location": "ds dsdsdsa",
+                  "section": "asedsadadsa",
+                  "specialization": "a adf adasdsa",
+                  "specialization_type": "dada adasdfda afad",
+                  "governorate": "wesd",
+                  "info": "adhgeorfjnhjdv fjdsjfdl",
+                });
+              },
+              icon: const Column(
+                children: [
+                  Icon(Icons.save),
+                  Text('Save'),
+                ],
               ),
             ),
           )

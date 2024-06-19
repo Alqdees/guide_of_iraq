@@ -12,9 +12,10 @@ class CardHomePage extends StatelessWidget {
     required this.name,
     required this.time,
     required this.type,
+    required this.h,
     super.key,
   });
-  double? height;
+  double? height, h;
   ShowDataController postData = Get.put(ShowDataController());
   String? name, time, type;
   @override
@@ -23,7 +24,7 @@ class CardHomePage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Container(
-        height: height! / 7,
+        height: height! / 6,
         padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 6.0),
         decoration: BoxDecoration(
           color: Colors.white, // Background color

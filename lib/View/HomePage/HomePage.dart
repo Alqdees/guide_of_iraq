@@ -9,15 +9,154 @@ import 'CardHomePage.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   ShowDataController postData = Get.put(ShowDataController());
-  List<String> p = ['a', 'b', 'c', 'd', 'e', 'f'];
+  double? height;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ShowDataController>(
-      init: ShowDataController(),
-      builder: (c) {
-        return Scaffold(
-          backgroundColor: ColorApp.grayvertlight,
-          bottomSheet: Container(
+    height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      backgroundColor: ColorApp.grayvertlight,
+      // bottomSheet:
+      body: SafeArea(
+          child: Column(
+        children: [
+          const SizedBox(
+            height: 10.0,
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 18.0,
+                ),
+                Container(
+                  // color: ColorApp.graylight,
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                    color: ColorApp.graylight, // Background color
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: ColorApp.graylight,
+                      width: 0.8,
+                    ),
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    iconSize: 34.0,
+                    icon: const Icon(
+                      Icons.notification_add,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Expanded(
+                  flex: 4,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorApp.graylight, // Background color
+                      hintText: 'Search'.tr,
+                      hintStyle: const TextStyle(color: Colors.black),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      labelText: "Search".tr,
+
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      ),
+                      // border: OutlineInputBorder(),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      labelStyle: const TextStyle(
+                        color: Colors.black,
+                        //  background: ,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+              ],
+            ),
+          ),
+          // const SizedBox(
+          //   height: 4.0,
+          // ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(
+                  width: 1.0,
+                ),
+                DropdownExample(
+                  name: "Doctor",
+                  dropdownItems: const [
+                    'Lawer',
+                    'Doctor',
+                    'Pharmacal',
+                  ],
+                ),
+                // const SizedBox(
+                //   width: 4.0,
+                // ),
+                DropdownExample(
+                  name: "Eye surgery 1",
+                  dropdownItems: const [
+                    "Eye surgery 1",
+                    "Eye surgery 2",
+                    "Eye surgery 3",
+                  ],
+                ),
+                // const SizedBox(
+                //   width: 4.0,
+                // ),
+                DropdownExample(
+                  name: "Baghdad",
+                  dropdownItems: const [
+                    'Baghdad',
+                    'Basra',
+                    'Najaf',
+                  ],
+                ),
+                const SizedBox(
+                  width: 1.0,
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 8,
+            child: Obx(() {
+              if (postData.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return ListView.builder(
+                  itemCount: 8, //postData.index,
+                  itemBuilder: (context, i) {
+                    // postData.fetchPosts();
+                    // print('object111 $i');
+                    return CardHomePage(
+                      name: postData.responsed!.values.toList()[7].toString(),
+                      time: postData.responsed!.values.toList()[2].toString(),
+                      type: postData.responsed!.values.toList()[5].toString(),
+                      h: height,
+                    );
+                  },
+                );
+              }
+            }),
+          ),
+          Container(
             color: ColorApp.grayvertlight,
             height: 70.0,
             width: double.infinity,
@@ -83,149 +222,8 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          body: SafeArea(
-              child: Column(
-            children: [
-              const SizedBox(
-                height: 10.0,
-              ),
-              Expanded(
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 18.0,
-                    ),
-                    Container(
-                      // color: ColorApp.graylight,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 2.0),
-                      decoration: BoxDecoration(
-                        color: ColorApp.graylight, // Background color
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: ColorApp.graylight,
-                          width: 0.8,
-                        ),
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        iconSize: 34.0,
-                        icon: const Icon(
-                          Icons.notification_add,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: ColorApp.graylight, // Background color
-                          hintText: 'Search'.tr,
-                          hintStyle: const TextStyle(color: Colors.black),
-                          border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                          ),
-                          labelText: "Search".tr,
-
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            color: Colors.black,
-                          ),
-                          // border: OutlineInputBorder(),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black,
-                            ),
-                          ),
-                          labelStyle: const TextStyle(
-                            color: Colors.black,
-                            //  background: ,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                  ],
-                ),
-              ),
-              // const SizedBox(
-              //   height: 4.0,
-              // ),
-              Expanded(
-                flex: 1,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(
-                      width: 1.0,
-                    ),
-                    DropdownExample(
-                      name: "Doctor",
-                      dropdownItems: const [
-                        'Lawer',
-                        'Doctor',
-                        'Pharmacal',
-                      ],
-                    ),
-                    // const SizedBox(
-                    //   width: 4.0,
-                    // ),
-                    DropdownExample(
-                      name: "Eye surgery 1",
-                      dropdownItems: const [
-                        "Eye surgery 1",
-                        "Eye surgery 2",
-                        "Eye surgery 3",
-                      ],
-                    ),
-                    // const SizedBox(
-                    //   width: 4.0,
-                    // ),
-                    DropdownExample(
-                      name: "Baghdad",
-                      dropdownItems: const [
-                        'Baghdad',
-                        'Basra',
-                        'Najaf',
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 1.0,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 8,
-                child: Obx(() {
-                  if (postData.isLoading.value) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else {
-                    return ListView.builder(
-                      itemCount: postData.posts.length,
-                      itemBuilder: (context, i) {
-                
-                        return CardHomePage(
-                          name: postData.posts[i].governorate,
-                          time: postData.posts[i].updatedAt,
-                          type: postData.posts[i].specialization,
-                        );
-                      },
-                    );
-                  }
-                }),
-              ),
-            ],
-          )),
-        );
-      },
+        ],
+      )),
     );
   }
 }
@@ -279,6 +277,7 @@ class _DropdownExampleState extends State<DropdownExample> {
         onChanged: (String? newValue) {
           setState(() {
             _selectedValue = newValue;
+            print('object $_selectedValue');
           });
         },
       ),
