@@ -1,177 +1,197 @@
+import 'dart:developer';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:guide_of_iraq/Model/AddEntriesModel/AddEntriesModel.dart';
 import '../Colors/ColorApp.dart';
 import '../HomePage/HomePage.dart';
 
 class AddEntries extends StatelessWidget {
-  const AddEntries({super.key});
+  AddEntries({super.key});
+  TextEditingController name = TextEditingController();
+  TextEditingController number = TextEditingController();
+  TextEditingController location = TextEditingController();
+  TextEditingController type = TextEditingController();
+  TextEditingController sp = TextEditingController();
+  TextEditingController gover = TextEditingController();
+  TextEditingController cv = TextEditingController();
+  String? drop_location = 'المحافظة';
+
+  String drop_jr = 'نوع التخصص';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        textDirection: TextDirection.ltr,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(top: 40.0),
-            height: 80.0,
-            child: const Text(
-              'صفحة مدير الادخال',
-              style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: AutofillHints.birthdayDay),
+          child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          textDirection: TextDirection.ltr,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 40.0),
+              height: 80.0,
+              child: const Text(
+                'صفحة مدير الادخال',
+                style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: AutofillHints.birthdayDay),
+              ),
             ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Column(
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      TextFieldCustom(
+                        lable: 'name',
+                        icon: Icons.person,
+                      ),
+                      const SizedBox(
+                        height: 4.0,
+                      ),
+                      TextFieldCustom(
+                        lable: 'Phone',
+                        icon: Icons.phone,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 120.0,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 4.0, vertical: 4.0),
+                  decoration: BoxDecoration(
+                    color: ColorApp.graylight, // Background color
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 0.8,
+                    ),
+                  ),
+                  child: TextButton(
+                    child: const Text("أختر صورة"),
+                    onPressed: () {},
+                    // style: ButtonStyle(backgroundColor: WidgetStateProperty<Color>()),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 22.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DropdownExample(
+                  name: drop_location,
+                  dropdownItems: const [
+                    'المحافظة',
+                    'كركوك',
+                    'بغداد',
+                  ],
+                ),
+                DropdownExample(
+                  name: 'المنطقة',
+                  dropdownItems: const [
+                    'المنطقة',
+                    'كركوك',
+                    'بغداد',
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DropdownExample(
+                  name: 'المحافظة',
+                  dropdownItems: const [
+                    'المحافظة',
+                    'كركوك',
+                    'بغداد',
+                  ],
+                ),
+                DropdownExample(
+                  name: 'المنطقة',
+                  dropdownItems: const [
+                    'المنطقة',
+                    'كركوك',
+                    'بغداد',
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              width: double.infinity,
+              child: DropdownExample(
+                name: drop_jr,
+                dropdownItems: const [
+                  'نوع التخصص',
+                  'جراحة قلبية',
+                  'كلى',
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            TextFieldCustomCV(
+              lable: 'CV',
+              icon: Icons.info,
+              text: cv,
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Container(
+              height: 70.0,
+              width: 100.0,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
+              decoration: BoxDecoration(
+                color: ColorApp.graylight, // Background color
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: ColorApp.graylight,
+                  width: 0.8,
+                ),
+              ),
+              // color: ColorApp.graylight,
+              child: IconButton(
+                onPressed: () {
+                  log('message  result  ++ == $drop_location');
+                  AddEntriesModel.addEntries({
+                    "phone": number.text,
+                    "location": location.text,
+                    "section": name.text,
+                    "specialization": drop_location,
+                    "specialization_type": "Ahmed S Muhnood",
+                    "governorate": drop_jr,
+                    "info": cv.text,
+                  });
+                },
+                icon: const Column(
                   children: [
-                    TextFieldCustom(
-                      lable: 'name',
-                      icon: Icons.person,
-                    ),
-                    const SizedBox(
-                      height: 4.0,
-                    ),
-                    TextFieldCustom(
-                      lable: 'Phone',
-                      icon: Icons.phone,
-                    ),
+                    Icon(Icons.save),
+                    Text('Save'),
                   ],
                 ),
               ),
-              Container(
-                height: 120.0,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-                decoration: BoxDecoration(
-                  color: ColorApp.graylight, // Background color
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 0.8,
-                  ),
-                ),
-                child: TextButton(
-                  child: const Text("أختر صورة"),
-                  onPressed: () {},
-                  // style: ButtonStyle(backgroundColor: WidgetStateProperty<Color>()),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 22.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              DropdownExample(
-                name: 'المحافظة',
-                dropdownItems: const [
-                  'المحافظة',
-                  'كركوك',
-                  'بغداد',
-                ],
-              ),
-              DropdownExample(
-                name: 'المنطقة',
-                dropdownItems: const [
-                  'المنطقة',
-                  'كركوك',
-                  'بغداد',
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              DropdownExample(
-                name: 'المحافظة',
-                dropdownItems: const [
-                  'المحافظة',
-                  'كركوك',
-                  'بغداد',
-                ],
-              ),
-              DropdownExample(
-                name: 'المنطقة',
-                dropdownItems: const [
-                  'المنطقة',
-                  'كركوك',
-                  'بغداد',
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 12.0,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            width: double.infinity,
-            child: DropdownExample(
-              name: 'نوع التخصص',
-              dropdownItems: const [
-                'نوع التخصص',
-                'جراحة قلبية',
-                'كلى',
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 12.0,
-          ),
-          TextFieldCustomCV(lable: 'CV', icon: Icons.info),
-          const SizedBox(
-            height: 10.0,
-          ),
-          Container(
-            height: 70.0,
-            width: 100.0,
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
-            decoration: BoxDecoration(
-              color: ColorApp.graylight, // Background color
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: ColorApp.graylight,
-                width: 0.8,
-              ),
-            ),
-            // color: ColorApp.graylight,
-            child: IconButton(
-              onPressed: () {
-                AddEntriesModel.addEntries({
-                  "phone": "1267890",
-                  "location": "ds dsdsdsa",
-                  "section": "asedsadadsa",
-                  "specialization": "a adf adasdsa",
-                  "specialization_type": "dada adasdfda afad",
-                  "governorate": "wesd",
-                  "info": "adhgeorfjnhjdv fjdsjfdl",
-                });
-              },
-              icon: const Column(
-                children: [
-                  Icon(Icons.save),
-                  Text('Save'),
-                ],
-              ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       )),
     );
   }
@@ -220,15 +240,18 @@ class TextFieldCustom extends StatelessWidget {
 }
 
 class TextFieldCustomCV extends StatelessWidget {
-  TextFieldCustomCV({required this.lable, required this.icon, super.key});
+  TextFieldCustomCV(
+      {required this.lable, required this.icon, required this.text, super.key});
   String? lable;
   IconData? icon;
+  TextEditingController text;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: TextFormField(
+        controller: text,
         maxLines: 10,
         keyboardType: TextInputType.multiline,
         decoration: InputDecoration(

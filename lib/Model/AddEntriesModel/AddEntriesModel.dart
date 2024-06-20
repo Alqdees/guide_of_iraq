@@ -9,9 +9,9 @@ class AddEntriesModel {
 
     final response = await http.post(
       url,
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json; charset=UTF-8',
+      // },
       body: json.encode(entries),
     );
 

@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       ),
                       labelText: "Search".tr,
-
+      
                       prefixIcon: const Icon(
                         Icons.search,
                         color: Colors.black,
@@ -141,14 +141,12 @@ class HomePage extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return ListView.builder(
-                  itemCount: 8, //postData.index,
+                  itemCount: postData.e.length, //postData.index,
                   itemBuilder: (context, i) {
-                    // postData.fetchPosts();
-                    // print('object111 $i');
                     return CardHomePage(
-                      name: postData.responsed!.values.toList()[7].toString(),
-                      time: postData.responsed!.values.toList()[2].toString(),
-                      type: postData.responsed!.values.toList()[5].toString(),
+                      name: postData.e[i]['id'].toString(),
+                      time: postData.e[i]['phone'],
+                      type: postData.e[i]['section'],
                       h: height,
                     );
                   },
@@ -178,8 +176,9 @@ class HomePage extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     // Get.offNamed(const AddEntries().toString());
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return const AddEntries();
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) {
+                      return AddEntries();
                     }));
                   },
                   icon: const Column(

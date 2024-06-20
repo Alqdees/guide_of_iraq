@@ -1,46 +1,47 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:get/get.dart';
-import 'package:guide_of_iraq/Model/ShowDataModel.dart';
 import 'package:http/http.dart' as http;
 
 class ShowDataController extends GetxController {
-  List<Data> person = [];
-  // RxList posts = <Data>[].obs;
   var isLoading = true.obs;
   int index = 1;
   Map<String, dynamic>? responsed;
+  RxList e = [].obs;
 
   @override
   void onInit() {
     fetchPosts();
+    // e.value = test;
     super.onInit();
   }
 
-  void fetchPosts() async {
+  Future fetchPosts() async {
     try {
-      var uri = Uri.parse('https://abbas.pointeam.org/api/client/show');
+      var uri = Uri.parse(
+          'https://abbas.pointeam.org/api/client/show?client_id=$index');
 
-      var body = {'client_id': index.toString()};
-
-      // var headers = {"content-type": "application/json"};
-
-      final response = await http.post(uri, body: body);
+      final response = await http.post(uri);
 
       isLoading(true);
 
       if (response.statusCode == 200) {
         responsed = json.decode(response.body);
-        log('message  === ${responsed!.values.toList()}');
+        index++;
       } else {
         print('Error ${response.statusCode}: ${response.reasonPhrase}');
         Get.snackbar('Error', 'Failed to load posts');
+        // return;
       }
     } catch (e) {
       print('Exception: $e');
       Get.snackbar('Error', 'Failed to load posts: $e');
+      // return;
     } finally {
       isLoading(false);
     }
+    e.add(responsed!);
+
+    log('message eeeee  finalyyyyyyy $e');
   }
 }
