@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:guide_of_iraq/Control/AddEntriesController/AddEntriesController.dart';
 import 'package:guide_of_iraq/Model/AddEntriesModel/AddEntriesModel.dart';
 import '../Colors/ColorApp.dart';
 import '../HomePage/HomePage.dart';
@@ -19,6 +20,7 @@ class AddEntries extends StatelessWidget {
   String? drop_location = 'المحافظة';
 
   String drop_jr = 'نوع التخصص';
+  AddEntriesController p = Get.put(AddEntriesController());
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class AddEntries extends StatelessWidget {
                       TextFieldCustom(
                         lable: 'name',
                         icon: Icons.person,
+                        c: name,
                       ),
                       const SizedBox(
                         height: 4.0,
@@ -57,6 +60,7 @@ class AddEntries extends StatelessWidget {
                       TextFieldCustom(
                         lable: 'Phone',
                         icon: Icons.phone,
+                        c: number,
                       ),
                     ],
                   ),
@@ -112,19 +116,19 @@ class AddEntries extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropdownExample(
-                  name: 'المحافظة',
+                  name: 'القسم',
                   dropdownItems: const [
-                    'المحافظة',
-                    'كركوك',
-                    'بغداد',
+                    'القسم',
+                    'دكتور',
+                    'صيدلي',
                   ],
                 ),
                 DropdownExample(
-                  name: 'المنطقة',
+                  name: 'الاختصاص',
                   dropdownItems: const [
-                    'المنطقة',
-                    'كركوك',
-                    'بغداد',
+                    'الاختصاص',
+                    'عيون',
+                    'باطنية',
                   ],
                 ),
               ],
@@ -171,15 +175,18 @@ class AddEntries extends StatelessWidget {
               // color: ColorApp.graylight,
               child: IconButton(
                 onPressed: () {
-                  log('message  result  ++ == $drop_location');
-                  AddEntriesModel.addEntries({
-                    "phone": number.text,
-                    "location": location.text,
-                    "section": name.text,
-                    "specialization": drop_location,
-                    "specialization_type": "Ahmed S Muhnood",
-                    "governorate": drop_jr,
-                    "info": cv.text,
+                  p.addEntries(
+                    {
+                      "phone": number.text,
+                      "location": name.text,
+                      "section": name.text,
+                      "specialization": drop_location,
+                      "specialization_type": "Ahmed S Muhnood",
+                      "governorate": drop_jr,
+                      "info": cv.text,
+                    },
+                  ).then((v) {
+                    print(v);
                   });
                 },
                 icon: const Column(
@@ -198,15 +205,18 @@ class AddEntries extends StatelessWidget {
 }
 
 class TextFieldCustom extends StatelessWidget {
-  TextFieldCustom({required this.lable, required this.icon, super.key});
+  TextFieldCustom(
+      {required this.lable, required this.icon, required this.c, super.key});
   String? lable;
   IconData? icon;
+  TextEditingController c = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: TextFormField(
+        controller: c,
         decoration: InputDecoration(
           filled: true,
           fillColor: ColorApp.graylight, // Background color
